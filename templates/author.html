@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{%block title %}
+    Flask App
+{% endblock %}
+
+{% block back %}
+  <a class="p-2 text-dark" href="{{url_for('index')}}">Main</a>
+{% endblock %}
+
+{%block mainhead %}
+    Author
+{% endblock %}
+
+
+{%block content %}
+    <div class="col-6 offset-md-3">
+        <p class="lead">
+            Dear User. Welcome to my suite! My name is Vlad I'm 26 years old. I was an electronics engineer and used to program
+            microcontrollers and SoC. But now I more interested in IT technologies, datascience and everything connected with it.
+            The purpose of my suite is to show that I'm ready for real tasks and I can handle it. Here is my contacts.
+        </p>
+        <div class="row">
+            <div class="col text-center">
+                <p class="lead">
+                    <a href="https://github.com/pinchazer">GitHub</a>
+                </p>
+            </div>
+            <div class="col text-center">
+                <p class="lead">
+                    <a href="https://habr.com/ru/users/pinchazer/">Habr</a>
+                </p>
+            </div>
+            <div class="col text-center">
+                <p class="lead">
+                    <a href="https://t.me/iztob">Telegram</a>
+                </p>
+            </div>
+        </div>
+        <div class="col text-center">
+            <a class="btn btn-danger" role="button" href="{{url_for('download')}}">
+              Download resume
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+

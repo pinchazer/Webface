@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block author %}
+  <a class="p-2 text-dark" href="{{url_for('author')}}">About author</a>
+{% endblock %}
+
+{%block title %}
+    Flask App
+{% endblock %}
+
+{%block mainhead %}
+    Web Interface
+{% endblock %}
+
+{%block maintext %}
+    <p class="lead">
+      Simple web interface for my demo project. Choose one of three datascience models and play with it.
+    </p>
+{% endblock %}
+
+{%block content %}
+<div class="container">
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-2 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal"></h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">Iris<small class="text-muted"></small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+            <li>KNN classifier</li>
+            <li>Iris-setosa</li>
+            <li>Iris-virginica</li>
+            <li>Iris-versicolor</li>
+        </ul>
+        <form action={{url_for('iris.index')}}>
+          <button type="submit" class="btn btn-lg btn-block btn-success">Take a look</button>
+        </form>
+      </div>
+    </div>
+    <div class="card mb-2 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal"></h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">Text recognition<small class="text-muted"></small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Logistic Regression</li>
+          <li>Type some text</li>
+          <li>And get result</li>
+          <li>English language</li>
+        </ul>
+        <form action={{url_for('text.index')}}>
+          <button type="submit" class="btn btn-lg btn-block btn-warning">Get started</button>
+        </form>
+      </div>
+    </div>
+    <div class="card mb-2 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal"></h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">Computer vision<small class="text-muted"></small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Logistic Regression</li>
+          <li>Draw a digit</li>
+          <li>And get result</li>
+          <li>Don't worry about mistakes :)</li>
+        </ul>
+        <form action={{url_for('numbers.index')}}>
+          <button type="submit" class="btn btn-lg btn-block btn-danger">Try this</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base_datamodels.html' %}
+
+{%block title %}
+    Flask App
+{% endblock %}
+
+{%block navbarname %}
+    Vlad Timofeev
+{% endblock %}
+
+{%block mainhead %}
+    Text model
+{% endblock %}
+
+
+{%block maintext %}
+    Type text in form below and click "Check!" button. Model should determine emotional focus of the message
+    whether it's positive or negative.
+{% endblock %}
+
+
+{%block content %}
+    <div class="container">
+      <form method="post">
+          <div class="row justify-content-center">
+              <div class="col-6">
+                  <div class="col">
+                      {{field()}}
+                      {% if field.errors %}
+                        <small class="form-text text-muted">
+                            {{''.join(field.errors)}}
+                        </small>
+                      {% endif %}
+                  </div>
+                  <div class="col text-center pt-md-4">
+                      <button type="submit" name="check" class="btn btn-primary ">Check!</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+        <div class="header px-3 py-3 pt-md-4 pb-md-2 mx-auto text-center">
+            {% if answer != '' %}
+                <p class="lead">{{answer['answ']}}</p>
+                <p class="lead"> Probability is <b>{{answer['proba']}}%</b></p>
+            {% endif %}
+        </div>
+
+    </div>
+{% endblock %}
+
+<!--
+      <form method="post">
+        <div class="row">
+          <div class="col">
+            <input type="text" name="text1" class="form-control" placeholder="Sepal Length">
+          </div>
+          <div class="col">
+            <input type="text" name="text2" class="form-control" placeholder="Sepal Width">
+          </div>
+          <div class="col">
+            <input type="text" name="text3" class="form-control" placeholder="Petal Length">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Petal Width">
+          </div>
+          <div class="col-1">
+            <button type="reset" class="btn btn-outline-primary">Reset</button>
+          </div>
+          <div class="col-1">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+-->

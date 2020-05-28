@@ -1,0 +1,76 @@
+{% extends 'base_datamodels.html' %}
+
+{%block title %}
+    Flask App
+{% endblock %}
+
+
+{%block mainhead %}
+    Computer vision
+{% endblock %}
+
+
+{%block maintext %}
+    Draw any digit and let me guess what is it.
+    <p class="lead">{{answer}}</p>
+{% endblock %}
+
+{% block back %}
+  <a class="p-2 text-dark" href="{{url_for('index')}}">Main</a>
+{% endblock %}
+
+{% block author %}
+  <a class="p-2 text-dark" href="{{url_for('author')}}">About author</a>
+{% endblock %}
+
+{%block content %}
+
+<div class="row justify-content-center text-center">
+      <div class="col justify-content-center text-center" >
+        <canvas id="canvas" title="draw here" style="border: 1px solid black;" width="300" height="300"></canvas>
+          <div class="row ">
+              <div class="col-2 pt-md-4   offset-md-3">
+                <p><button type="button" id="clear" class="btn btn-primary ">Clear</button></p>
+              </div>
+              <div class="col-2 pt-md-4">
+                <!--<form method="post">-->
+                    <p><button type="button" id="save" class="btn btn-primary">Check</button></p>
+                <!--</form>-->
+              </div>
+              <div class="col-2 pt-md-4">
+                <form method="get">
+                    <p><button type="submit" id="show" class="btn btn-primary">Update</button></p>
+                </form>
+              </div>
+          </div>
+      </div>
+    </div>
+
+
+
+{% endblock %}
+
+<!--
+      <form method="post">
+        <div class="row">
+          <div class="col">
+            <input type="text" name="text1" class="form-control" placeholder="Sepal Length">
+          </div>
+          <div class="col">
+            <input type="text" name="text2" class="form-control" placeholder="Sepal Width">
+          </div>
+          <div class="col">
+            <input type="text" name="text3" class="form-control" placeholder="Petal Length">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Petal Width">
+          </div>
+          <div class="col-1">
+            <button type="reset" class="btn btn-outline-primary">Reset</button>
+          </div>
+          <div class="col-1">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+-->

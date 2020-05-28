@@ -1,0 +1,92 @@
+{% extends 'base_datamodels.html' %}
+
+{%block title %}
+    Flask App
+{% endblock %}
+
+{%block mainhead %}
+    Iris model
+{% endblock %}
+
+{% block back %}
+  <a class="p-2 text-dark" href="{{url_for('index')}}">Main</a>
+{% endblock %}
+
+{% block author %}
+  <a class="p-2 text-dark" href="{{url_for('author')}}">About author</a>
+{% endblock %}
+
+{%block maintext %}
+    Just type parameters in form below in cm and push submit button. Model predict spices and show you the answer.
+{% endblock %}
+
+
+{%block content %}
+    <div class="container">
+      <div class="row px-3 py-3 pt-md-1 pb-md-4 mx-auto text-center">
+        <div class="col-sm">
+          <img src="static/images/Iris_setosa_s.jpg" alt="Iris_setosa_s" class="rounded-circle">
+        </div>
+        <div class="col-sm">
+          <img src="static/images/Iris_versicolor_s.jpg" alt="Iris_versicolor_s" class="rounded-circle">
+        </div>
+        <div class="col-sm">
+          <img src="static/images/Iris_virginica_s.jpg" alt="Iris_virginica_s" class="rounded-circle">
+        </div>
+      </div>
+
+      <form method="post">
+        <div class="row pb-md-4 mx-auto">
+            {% for field in fields %}
+              <div class="col-2">
+                  {{field()}}
+                  {% if field.errors %}
+                    <!--<div class="alert alert-primary" role="alert">-->
+                    <small class="form-text text-muted">
+                        {{''.join(field.errors)}}
+                    </small>
+              <!--</div>-->
+                  {% endif %}
+              </div>
+            {% endfor %}
+          <div class="col-1">
+            <button type="submit" name="reset" class="btn btn-outline-primary">Reset</button>
+          </div>
+          <div class="col-1">
+            <button type="submit" name="rand" class="btn btn-outline-secondary">Rand</button>
+          </div>
+          <div class="col-1">
+            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+        <div class="header px-3 py-3 pt-md-2 pb-md-4 mx-auto text-center">
+            <p class="lead">{{answer}}</p>
+        </div>
+    </div>
+{% endblock %}
+
+<!--
+      <form method="post">
+        <div class="row">
+          <div class="col">
+            <input type="text" name="text1" class="form-control" placeholder="Sepal Length">
+          </div>
+          <div class="col">
+            <input type="text" name="text2" class="form-control" placeholder="Sepal Width">
+          </div>
+          <div class="col">
+            <input type="text" name="text3" class="form-control" placeholder="Petal Length">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Petal Width">
+          </div>
+          <div class="col-1">
+            <button type="reset" class="btn btn-outline-primary">Reset</button>
+          </div>
+          <div class="col-1">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+-->
