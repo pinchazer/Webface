@@ -4,11 +4,15 @@ from .form import IrisForm
 from flask import request
 import joblib
 import random
+import os
+
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+iris_model_path = os.path.join(THIS_FOLDER, 'static/model/iris_KNN')
 
 iris = Blueprint('iris', __name__, template_folder='templates', static_folder='static')
 
 
-with open('datamodels\static\model\iris_KNN', 'rb') as mdl:
+with open(iris_model_path, 'rb') as mdl:
     iris_model = joblib.load(mdl)
 
 def rand_val():

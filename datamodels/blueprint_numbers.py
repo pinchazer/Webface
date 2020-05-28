@@ -8,12 +8,16 @@ from io import BytesIO
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 import joblib
+import os
+
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+numbers_model_path = os.path.join(THIS_FOLDER, 'static/model/numbers_model')
 
 scaler = MinMaxScaler(feature_range=(0, 16))
 numbers = Blueprint('numbers', __name__, template_folder='templates', static_folder='static')
 
 
-with open(r'datamodels\static\model\numbers_model', 'rb') as f:
+with open(numbers_model_path, 'rb') as f:
     numbers_model = joblib.load(f)
 
 
