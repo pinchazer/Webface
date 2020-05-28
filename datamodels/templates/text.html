@@ -12,6 +12,9 @@
     Text model
 {% endblock %}
 
+{% block back %}
+  <a class="p-2 text-dark" href="{{url_for('index')}}">Main</a>
+{% endblock %}
 
 {%block maintext %}
     Type text in form below and click "Check!" button. Model should determine emotional focus of the message
