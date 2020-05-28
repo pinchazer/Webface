@@ -3,21 +3,31 @@ from flask import render_template
 from .form import TextForm
 from flask import request
 from flask import Markup
+from sklearn.feature_extraction.text import TfidfVectorizer
 import re
 import joblib
 from config import Configuration
+import os
+
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+twitter_TfidfVectorizer_path = os.path.join(THIS_FOLDER, 'static/model/twitter_TfidfVectorizer.z')
+twitter_TfidfVectorizer_nocomp_simple_path = os.path.join(THIS_FOLDER, 'static/model/twitter_TfidfVectorizer_nocomp_simple')
+twitter_model_path = os.path.join(THIS_FOLDER, 'static/model/twitter_model_logreg.z')
+twitter_model_simple_path = os.path.join(THIS_FOLDER, 'static/model/twitter_model_logreg_nocomp_simple')
 
 
-if Configuration.FAST_MODEL: #true
-    with open(r'datamodels\static\model\twitter_model_logreg_nocomp_simple', 'rb') as f:
+if Configuration.FAST_TEXT_MODEL: #true
+    with open(twitter_model_simple_path, 'rb') as f:
         twitter_model_logreg = joblib.load(f)
-    with open(r'datamodels\static\model\twitter_TfidfVectorizer_nocomp_simple', 'rb') as f:
+    with open(twitter_TfidfVectorizer_nocomp_simple_path, 'rb') as f:
         twitter_TfidfVectorizer = joblib.load(f)
+        #twitter_TfidfVectorizer = joblib.load(f)
 else: #false
-    with open(r'datamodels\static\model\twitter_model_logreg.z', 'rb') as f:
+    with open(twitter_model_path, 'rb') as f:
         twitter_model_logreg = joblib.load(f)
-    with open(r'datamodels\static\model\twitter_TfidfVectorizer.z', 'rb') as f:
+    with open(twitter_TfidfVectorizer_path, 'rb') as f:
         twitter_TfidfVectorizer = joblib.load(f)
+        #twitter_TfidfVectorizer = joblib.load(f)
 
 text = Blueprint('text', __name__, template_folder='templates', static_folder='static')
 
@@ -46,6 +56,8 @@ def prediction(text):
             answ = Markup("Sounds like something <b>bad</b>")
         elif 50 <= proba <= 75:
             answ = Markup("Well... let it be <b>bad</b>")
+    if Configuration.FAST_TEXT_MODEL:
+        answ = answ + Markup("<b> NOT WORKING PROPERLY, CHECK README IN GIT</b>")
     r = {'answ': answ, 'proba': proba}
     return r
 
