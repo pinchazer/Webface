@@ -21,13 +21,11 @@ if Configuration.FAST_TEXT_MODEL: #true
         twitter_model_logreg = joblib.load(f)
     with open(twitter_TfidfVectorizer_nocomp_simple_path, 'rb') as f:
         twitter_TfidfVectorizer = joblib.load(f)
-        #twitter_TfidfVectorizer = joblib.load(f)
 else: #false
     with open(twitter_model_path, 'rb') as f:
         twitter_model_logreg = joblib.load(f)
     with open(twitter_TfidfVectorizer_path, 'rb') as f:
         twitter_TfidfVectorizer = joblib.load(f)
-        #twitter_TfidfVectorizer = joblib.load(f)
 
 text = Blueprint('text', __name__, template_folder='templates', static_folder='static')
 
@@ -56,8 +54,8 @@ def prediction(text):
             answ = Markup("Sounds like something <b>bad</b>")
         elif 50 <= proba <= 75:
             answ = Markup("Well... let it be <b>bad</b>")
-    if Configuration.FAST_TEXT_MODEL:
-        answ = answ + Markup("<b> NOT WORKING PROPERLY, CHECK README IN GIT</b>")
+    #if Configuration.FAST_TEXT_MODEL:
+        #answ = answ + Markup("<b> NOT WORKING PROPERLY, CHECK README IN GIT</b>")
     r = {'answ': answ, 'proba': proba}
     return r
 
